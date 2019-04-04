@@ -6,12 +6,12 @@
     <!-- ====================================================================== -->
 
     <groupId>com.adobe.ams</groupId>
-    <artifactId>s3replication</artifactId>
+    <artifactId>awsreplication</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>AMS S3 Replication - Reactor Project</name>
-    <description>AMS S3 replication</description>
+    <name>AMS S3 SQS SNS Replication - Reactor Project</name>
+    <description>AMS S3 SQS SNS replication</description>
     <prerequisites>
         <maven>3.0.2</maven>
     </prerequisites>

@@ -1,8 +1,12 @@
 
 custom replication agent that publishes the events to a SNS or SQS or files to S3 .
+
 The config also has a property to enable embedding the content as a json with the message. Since the message has a finite size, we use a s3 bucket for uploading the json content on replication and the published sns message will have a path to the file in s3 bucket.
+
 This way, we will be able to persist the content.
+
 This pattern allows both the architecture to evolve independent of each other.
+
 Now that the replication event is exposed as a SNS topic, other applications can subscribe to it and act accordingly.
 
 Steps

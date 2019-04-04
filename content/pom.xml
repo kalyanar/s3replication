@@ -6,7 +6,7 @@
     <!-- ====================================================================== -->
     <parent>
         <groupId>com.adobe.ams</groupId>
-        <artifactId>s3replication</artifactId>
+        <artifactId>awsreplication</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
@@ -14,8 +14,8 @@
     <!-- P R O J E C T D E S C R I P T I O N -->
     <!-- ====================================================================== -->
 
-    <artifactId>ams-aem-s3replication-content</artifactId>
-    <name>AMSS3 Replication Package</name>
+    <artifactId>ams-awsreplication-content</artifactId>
+    <name>AMS S3 SQS SNS Replication Package</name>
     <packaging>content-package</packaging>
 
     <build>
@@ -59,7 +59,7 @@
                     <embeddeds>
                         <embedded>
                             <groupId>${project.groupId}</groupId>
-                            <artifactId>ams-s3replication-bundle</artifactId>
+                            <artifactId>ams-awsreplication-bundle</artifactId>
                             <target>/apps/ams-commons/install</target>
                         </embedded>
                     </embeddeds>
@@ -113,7 +113,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>ams-s3replication-bundle</artifactId>
+            <artifactId>ams-awsreplication-bundle</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
