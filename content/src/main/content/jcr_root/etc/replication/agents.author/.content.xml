@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="cq:Page">
+    <jcr:content/>
+    <publish/>
+    <flush/>
+    <publish_reverse/>
+    <static/>
+    <test_and_target/>
+    <rep:policy/>
+    <screens/>
+    <youtube/>
+    <scene7/>
+    <dynamic_media_replication/>
+    <s7delivery/>
+    <offloading_4961b5b8-f789-48a8-aedd-1d02f76af73b/>
+    <s3/>
+	<sqs/>
+	<sns/>
+</jcr:root>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/ams-commons" />
+    <filter root="/etc/clientlibs/ams-commons"/>
+    <filter root="/etc/designs/ams-commons"/>
+    <filter root="/etc/ams-commons" />
+	<filter root="/etc/replication/agents.author/s3"/>
+	<filter root="/etc/replication/agents.author/sns"/>
+	<filter root="/etc/replication/agents.author/sqs"/>
+    <filter root="/apps/cq/core/content/nav/tools/ams-commons"/>
+	 <filter root="/home/users/system/ams-commons"/>
+     <filter root="/content/dam/rep:policy"/>
+     <filter root="/content/rep:policy"/>
+</workspaceFilter>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Panel"
+    title="Rules">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <bucket
+            jcr:primaryType="cq:Widget"
+            fieldDescription="BucketName"
+            fieldLabel="Bucket Name"
+            name="./transportUri"
+            xtype="textfield"/>
+        <definition
+            jcr:primaryType="cq:Widget"
+            fieldLabel="Look for these tags and attributes to replicate references"
+            height="200"
+            name="./references"
+            xtype="multifield"/>
+    </items>
+</jcr:root>

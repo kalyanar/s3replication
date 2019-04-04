@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:rep="internal"
+    jcr:primaryType="rep:SystemUser"
+    jcr:uuid="a52c4fde-3f8b-3c25-a53b-8283b347649b"
+    rep:authorizableId="aws-agent-service"
+    rep:principalName="aws-agent-service" />

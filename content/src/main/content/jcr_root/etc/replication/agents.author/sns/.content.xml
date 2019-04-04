@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2018-08-28T17:52:05.971+05:30"
+        cq:lastModifiedBy="admin"
+        cq:template="ams-commons/templates/s3agent"
+        jcr:description="Agent that exposes the replication event to a sns queue"
+        jcr:lastModified="{Date}2018-08-28T17:52:05.969+05:30"
+        jcr:lastModifiedBy="admin"
+        jcr:primaryType="nt:unstructured"
+        jcr:title="SNS agent"
+        sling:resourceType="ams-commons/components/awsagent"
+        enabled="false"
+        logLevel="info"
+        serializationType="sns"
+        transportUri="sns://aems3replication"
+        userId="admin"/>
+</jcr:root>
