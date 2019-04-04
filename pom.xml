@@ -15,12 +15,7 @@
     <prerequisites>
         <maven>3.0.2</maven>
     </prerequisites>
- <scm>
-        <connection>scm:git:git@git.corp.adobe.com:kalyanar/S3Replication.git</connection>
-        <developerConnection>scm:git:git@git.corp.adobe.com:kalyanar/S3Replication.git</developerConnection>
-        <url>https://git.corp.adobe.com/kalyanar/S3Replication/tree/releases/1.0.0</url>
-        <tag>s3replication-1.0.0</tag>
-    </scm>
+
     <!-- ====================================================================== -->
     <!-- P R O P E R T I E S -->
     <!-- ====================================================================== -->
@@ -266,19 +261,7 @@
         It would be best if you proxied the Adobe repository using a Maven
         Repository Manager. Once you do that, remove these sections.
      -->
- <distributionManagement>
-	        <repository>
-	            <id>artifactory.ams</id>
-	            <name>artifactory.ams</name>
-	            <url>https://amsauto-ci-archiva.ams.adobe.net/artifactory/security-team/</url>
-	        </repository>
-	        <snapshotRepository>
-	            <id>${snapshotRepository-Id}</id>
-	            <name>${snapshotRepository-Name}</name>
-	            <url>${snapshotRepository-URL}</url>
-	            <uniqueVersion>false</uniqueVersion>
-	        </snapshotRepository>
-	    </distributionManagement>
+ 
     <repositories>
         <repository>
             <id>adobe-public-releases</id>
