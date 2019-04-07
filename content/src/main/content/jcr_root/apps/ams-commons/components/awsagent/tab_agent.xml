@@ -64,5 +64,19 @@
             name="./reverseReplication"
             value="true"
             xtype="hidden"/>
+        <serType
+            jcr:primaryType="cq:Widget"
+            defaultValue="durbo"
+            fieldLabel="Serialization Type"
+            name="./serializationType"
+            options="$PATH.builders.json"
+            type="select"
+            xtype="selection"/>
+        <uri
+            jcr:primaryType="cq:Widget"
+            fieldDescription="target uri. eg: s3:// or sns:// or sqs://"
+            fieldLabel="URI"
+            name="./transportUri"
+            xtype="textfield"/>
     </items>
 </jcr:root>

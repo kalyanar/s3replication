@@ -148,8 +148,8 @@ String uri = xssAPI.encodeForHTML(properties.get("transportUri", i18n.get("(not 
         <script type="text/javascript">
         CQ.WCM.edit({
             "path":"<%= xssAPI.encodeForHTML(resource.getPath()) %>",
-            "dialog":"/libs/cq/replication/components/s3agent/dialog",
-            "type":"cq/replication/components/s3agent",
+            "dialog":"/apps/ams-commons/components/awsagent/dialog",
+            "type":"/apps/ams-commons/components/awsagent",
             "editConfig":{
                 "xtype":"editbar",
                 "listeners":{

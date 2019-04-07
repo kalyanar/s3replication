@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Panel"
+    title="Triggers">
+    <items jcr:primaryType="cq:WidgetCollection">
+        <specific
+            jcr:primaryType="cq:Widget"
+            fieldDescription="If checked, agent is excluded from normal replication, i.e. will not be used if a content author issues a replication action."
+            fieldLabel="Ignore default"
+            inputValue="true"
+            name="./triggerSpecific"
+            xtype="checkbox"/>
+        <specificClear
+            jcr:primaryType="cq:Widget"
+            inputValue="x"
+            name="./triggerSpecific@Delete"
+            xtype="hidden"/>
+        <onModified
+            jcr:primaryType="cq:Widget"
+            fieldDescription="If checked, agent will auto-replicate if content is modified."
+            fieldLabel="On Modification"
+            inputValue="true"
+            name="./triggerModified"
+            xtype="checkbox"/>
+        <onModifiedClear
+            jcr:primaryType="cq:Widget"
+            inputValue="x"
+            name="./triggerModified@Delete"
+            xtype="hidden"/>
+        <onDistribute
+            jcr:primaryType="cq:Widget"
+            fieldDescription="If checked, the agent will auto-replicate when content marked for distribution is modified."
+            fieldLabel="On Distribute"
+            inputValue="true"
+            name="./triggerDistribute"
+            xtype="checkbox"/>
+        <onDistributeClear
+            jcr:primaryType="cq:Widget"
+            inputValue="x"
+            name="./triggerDistribute@Delete"
+            xtype="hidden"/>
+        <onOnOffTime
+            jcr:primaryType="cq:Widget"
+            fieldDescription="If checked, agent will auto-replicate if a page passes an on-/offtime boundary"
+            fieldLabel="On-/OffTime reached"
+            inputValue="true"
+            name="./triggerOnOffTime"
+            xtype="checkbox"/>
+        <onOnOffTimeClear
+            jcr:primaryType="cq:Widget"
+            inputValue="x"
+            name="./triggerOnOffTime@Delete"
+            xtype="hidden"/>
+        <onReceive
+            jcr:primaryType="cq:Widget"
+            fieldDescription="If checked, agent will chain replicate whenever receiving replication events."
+            fieldLabel="On Receive"
+            inputValue="true"
+            name="./triggerReceive"
+            xtype="checkbox"/>
+        <onReceiveClear
+            jcr:primaryType="cq:Widget"
+            inputValue="x"
+            name="./triggerReceive@Delete"
+            xtype="hidden"/>
+        <noStatusUpdate
+            jcr:primaryType="cq:Widget"
+            fieldDescription="If checked, agent will not force a replication status update."
+            fieldLabel="No Status Update"
+            inputValue="true"
+            name="./noStatusUpdate"
+            xtype="checkbox"/>
+        <noStatusUpdateClear
+            jcr:primaryType="cq:Widget"
+            inputValue="x"
+            name="./noStatusUpdate@Delete"
+            xtype="hidden"/>
+        <noVersioning
+            jcr:primaryType="cq:Widget"
+            fieldDescription="If checked, agent will not force versioning of activated pages."
+            fieldLabel="No Versioning"
+            inputValue="true"
+            name="./noVersioning"
+            xtype="checkbox"/>
+        <noVersioningClear
+            jcr:primaryType="cq:Widget"
+            inputValue="x"
+            name="./noVersioning@Delete"
+            xtype="hidden"/>
+    </items>
+</jcr:root>

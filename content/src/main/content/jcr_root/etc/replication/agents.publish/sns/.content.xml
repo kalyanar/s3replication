@@ -15,5 +15,6 @@
         logLevel="info"
         serializationType="sns"
         transportUri="sns://aems3replication"
+        triggerReceive="true"
         userId="admin"/>
 </jcr:root>

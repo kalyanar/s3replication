@@ -8,5 +8,5 @@
         jcr:primaryType="nt:unstructured"
         sling:resourceType="ams-commons/components/awsagent"
         
-        transportUri="s3://&lt;bucketname>"/>
+        transportUri="s3://bucketname>"/>
 </jcr:root>

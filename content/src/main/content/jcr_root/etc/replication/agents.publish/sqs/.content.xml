@@ -15,5 +15,6 @@
         logLevel="info"
         serializationType="sqs"
         transportUri="sqs://aems3replication"
+        triggerReceive="true"
         userId="admin"/>
 </jcr:root>
