@@ -1,29 +1,31 @@
+# AWS SQS/SNS/S3 replication	
 
-custom replication agent that publishes the events to a SNS or SQS or files to S3 .
+### Features
 
-The config also has a property to enable embedding the content as a json with the message. Since the message has a finite size, we use a s3 bucket for uploading the json content on replication and the published sns message will have a path to the file in s3 bucket.
-
-This way, we will be able to persist the content.
-
-This pattern allows both the architecture to evolve independent of each other.
-
-Now that the replication event is exposed as a SNS topic, other applications can subscribe to it and act accordingly.
-
-Steps
-1.Configure system user for aws-user
-
-2.Configure service user mapping
+- Exposes the replication events via SQS/SNS
+- Content aware configuration allowing to push to different queues for different content paths
+- Custom replication agents for S3/SQS/SNS
+- Allow us to also persist content with each message to SQS/SNS by persisting the file in a s3 bucket configurable as part of configuration
+- Allows reactive architectures 
 
 
-3.install the bundle
+**Set  up**
+1. build with maven
+```
+mvn clean install
+```
+2. Install the `ams-awsreplication-content-0.0.1-SNAPSHOT-min.zip` to author/publish
+3. The code has 3 sample agents (one each for sqs,sns,s3) under agents.publish. The idea being, it would make sense to push events to the cloud after the replicated package successfully reaches the publish server.
 
-4.configure com.adobe.ams.replication.aws.sqs.SQSReplicationConfig and com.adobe.ams.replication.aws.AWSReplicationConfig by following https://sling.apache.org/documentation/bundles/context-aware-configuration/context-aware-configuration.html
+**What you will see**
 
-5.These allow different set up for different content paths.
-
-6.The property names are in the source code
-
-
-7.Create a custom replication agent ui (named sqs) by copying one of the other agents at /etc/replication/agents.author .
-
-
+1. A system user named 	`aws-agent-service` under `/home/users/system/ams-commons/`. Check [aws-agent-service](https://github.com/kalyanar/s3replication/tree/master/content/src/main/content/jcr_root/home/users/system/ams-commons/aws-agent-service).
+2. A service user mapping under `/apps/ams-commons/config`. The file name is `org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-ams-commons.xml`
+```
+com.adobe.ams.ams-awsreplication-bundle:aws-agent=aws-agent-service
+```
+3. Under `/conf/global`, there would be a `sling:configs` node of type `sling:Folder`
+4. This will have the configs for `com.adobe.ams.replication.aws.AWSReplicationConfig` ,`com.adobe.ams.replication.aws.s3.S3ReplicationConfig` , `com.adobe.ams.replication.aws.sns.SNSReplicationConfig`,`com.adobe.ams.replication.aws.sqs.SQSReplicationConfig`
+5. Check the code([AWSReplicationConfig](https://github.com/kalyanar/s3replication/blob/master/bundle/src/main/java/com/adobe/ams/replication/aws/AWSReplicationConfig.java) , [S3ReplicationConfig](https://github.com/kalyanar/s3replication/blob/master/bundle/src/main/java/com/adobe/ams/replication/aws/s3/S3ReplicationConfig.java) , [SNSReplicationConfig ](https://github.com/kalyanar/s3replication/blob/master/bundle/src/main/java/com/adobe/ams/replication/aws/sns/SNSReplicationConfig.java),[SQSReplicationConfig](https://github.com/kalyanar/s3replication/blob/master/bundle/src/main/java/com/adobe/ams/replication/aws/sqs/SQSReplicationConfig.java)) for what all values this can have. 
+6. Check [sling:configs](https://github.com/kalyanar/s3replication/tree/master/content/src/main/content/jcr_root/conf/global/_sling_configs) for the default global configs that we have set up.
+7.Check [custom agents](https://github.com/kalyanar/s3replication/tree/master/content/src/main/content/jcr_root/etc/replication/agents.publish) created.
