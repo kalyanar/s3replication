@@ -1,6 +1,7 @@
 package com.adobe.ams.replication.aws.sqs.impl;
 
 
+import com.adobe.ams.publishleader.LeaderProvider;
 import com.adobe.ams.replication.aws.AWSReplicationConfig;
 import com.adobe.ams.replication.aws.impl.AWSTransportHandler;
 import com.adobe.ams.replication.aws.s3.AmazonS3Factory;
@@ -57,11 +58,14 @@ public class SQSTransportHandler extends AWSTransportHandler implements Transpor
   @Reference
   private AmazonS3Factory amazonS3Factory;
 
+  @Reference
+  LeaderProvider leaderProvider;
+
   @Override
   public boolean canHandle(AgentConfig agentConfig) {
-    System.out.println("ee");
     String uri = agentConfig == null ? null : agentConfig.getTransportURI();
-    return uri != null && (uri.startsWith(TRANSPORT_SCHEME));  }
+    return uri != null && (uri.startsWith(TRANSPORT_SCHEME))&&leaderProvider
+            .isLeaderPublish();  }
 
 
   @Reference
@@ -80,7 +84,7 @@ public class SQSTransportHandler extends AWSTransportHandler implements Transpor
       e.printStackTrace();
     }
 
-    Resource contentResource=resourceResolver.getResource(path);
+    Resource contentResource=resourceResolver.getResource(path+"/jcr:content");
 
     SQSReplicationConfig sqsReplicationConfig=contentResource.adaptTo
             (ConfigurationBuilder.class).as(SQSReplicationConfig.class);
@@ -155,6 +159,9 @@ public class SQSTransportHandler extends AWSTransportHandler implements Transpor
             ;
     //send_msg_request.setMessageGroupId(sqsReplicationConfig.messagegroupid());
    // send_msg_request.setMessageDeduplicationId(pathToBeReplicated);
+    logger.error("awsReplicationConfig.regionName()"+awsReplicationConfig.regionName());
+    logger.error("awsReplicationConfig.profile()"+awsReplicationConfig
+            .profile());
     amazonSQSFactory.get(awsReplicationConfig.regionName(),
             awsReplicationConfig.profile()).sendMessage
             (send_msg_request);
