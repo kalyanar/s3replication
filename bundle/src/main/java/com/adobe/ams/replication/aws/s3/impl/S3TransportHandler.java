@@ -100,7 +100,7 @@ public class S3TransportHandler extends AWSTransportHandler implements Transport
   public boolean canHandle(AgentConfig agentConfig) {
     String uri = agentConfig == null ? null : agentConfig.getTransportURI();
     return uri != null && (uri.startsWith(TRANSPORT_SCHEME))&&leaderProvider
-            .isLeaderPublish();  }
+            .isLeader();  }
 
   @Override
   public ReplicationResult deliver(TransportContext transportContext, ReplicationTransaction replicationTransaction) throws ReplicationException {

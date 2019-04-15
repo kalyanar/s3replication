@@ -65,7 +65,7 @@ public class SQSTransportHandler extends AWSTransportHandler implements Transpor
   public boolean canHandle(AgentConfig agentConfig) {
     String uri = agentConfig == null ? null : agentConfig.getTransportURI();
     return uri != null && (uri.startsWith(TRANSPORT_SCHEME))&&leaderProvider
-            .isLeaderPublish();  }
+            .isLeader();  }
 
 
   @Reference
