@@ -1,5 +1,6 @@
 package com.adobe.ams.replication.aws.sns.impl;
 
+import com.adobe.ams.publishleader.LeaderProvider;
 import com.adobe.ams.replication.aws.AWSReplicationConfig;
 import com.adobe.ams.replication.aws.impl.AWSTransportHandler;
 import com.adobe.ams.replication.aws.s3.AmazonS3Factory;
@@ -56,10 +57,14 @@ public class SNSTransportHandler extends AWSTransportHandler implements Transpor
   ResourceResolverFactory resourceResolverFactory;
 
   private String  tmpDirStr;
+  @Reference
+  LeaderProvider leaderProvider;
+
   @Override
   public boolean canHandle(AgentConfig agentConfig) {
     String uri = agentConfig == null ? null : agentConfig.getTransportURI();
-    return uri != null && (uri.startsWith(TRANSPORT_SCHEME));  }
+    return uri != null && (uri.startsWith(TRANSPORT_SCHEME))&&leaderProvider
+            .isLeaderPublish();  }
 
   @Reference
   private AmazonSNSFactory amazonSNSFactory;

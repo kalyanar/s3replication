@@ -1,5 +1,6 @@
 package com.adobe.ams.replication.aws.s3.impl;
 
+import com.adobe.ams.publishleader.LeaderProvider;
 import com.adobe.ams.replication.aws.AWSReplicationConfig;
 import com.adobe.ams.replication.aws.impl.AWSTransportHandler;
 import com.adobe.ams.replication.aws.s3.AmazonS3Factory;
@@ -92,10 +93,14 @@ public class S3TransportHandler extends AWSTransportHandler implements Transport
       this.erp.remove(erp.getProviderName());
     }
   }
+  @Reference
+  LeaderProvider leaderProvider;
+
   @Override
   public boolean canHandle(AgentConfig agentConfig) {
     String uri = agentConfig == null ? null : agentConfig.getTransportURI();
-    return uri != null && (uri.startsWith(TRANSPORT_SCHEME));  }
+    return uri != null && (uri.startsWith(TRANSPORT_SCHEME))&&leaderProvider
+            .isLeaderPublish();  }
 
   @Override
   public ReplicationResult deliver(TransportContext transportContext, ReplicationTransaction replicationTransaction) throws ReplicationException {
