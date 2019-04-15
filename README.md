@@ -27,7 +27,7 @@ The handle method in the transport handler only returns true if the instance is 
 
 ```
     return uri != null && (uri.startsWith(TRANSPORT_SCHEME))&&leaderProvider
-            .isLeaderPublish();  
+            .isLeader();  
 ```
 
 **What you will see**
