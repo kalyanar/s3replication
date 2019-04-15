@@ -18,7 +18,7 @@ public class PublishTopologyEventListener implements TopologyEventListener,
 
   @Override
   public boolean isLeaderPublish() {
-    return false;
+    return leaderPublish;
   }
 
   @Override
