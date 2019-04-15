@@ -7,6 +7,7 @@
 - Custom replication agents for S3/SQS/SNS
 - Allow us to also persist content with each message to SQS/SNS by persisting the file in a s3 bucket configurable as part of configuration
 - Allows reactive architectures 
+- Runs only on the leader publish(when there are more than one publish )
 
 
 **Set  up**
@@ -14,8 +15,19 @@
 ```
 mvn clean install
 ```
-2. Install the `ams-awsreplication-content-0.0.1-SNAPSHOT-min.zip` to author/publish
+2. Install the `ams-awsreplication-content-0.0.1-SNAPSHOT-min.zip` to author and publish
 3. The code has 3 sample agents (one each for sqs,sns,s3) under agents.publish. The idea being, it would make sense to push events to the cloud after the replicated package successfully reaches the publish server.
+4.On the publish servers,In System Console modify the config 'Apache Sling Oak-Based Discovery Service Configuration’ and set the value of 'Topology Connector URLs’ to 'http://authorip:4502/libs/sling/topology/connector' (this means the servers will announce themselves too author, which will then notify the rest of the topology). You will see the log entry as below. 
+```
+handleTopologyEvent: i am leader = 
+
+```
+The handle method in the transport handler only returns true if the instance is a leader.
+
+```
+    return uri != null && (uri.startsWith(TRANSPORT_SCHEME))&&leaderProvider
+            .isLeaderPublish();  
+```
 
 **What you will see**
 
