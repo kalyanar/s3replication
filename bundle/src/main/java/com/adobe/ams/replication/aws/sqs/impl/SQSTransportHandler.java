@@ -64,8 +64,7 @@ public class SQSTransportHandler extends AWSTransportHandler implements Transpor
   @Override
   public boolean canHandle(AgentConfig agentConfig) {
     String uri = agentConfig == null ? null : agentConfig.getTransportURI();
-    return uri != null && (uri.startsWith(TRANSPORT_SCHEME))&&leaderProvider
-            .isLeader();  }
+    return uri != null && (uri.startsWith(TRANSPORT_SCHEME));  }
 
 
   @Reference
@@ -115,10 +114,11 @@ public class SQSTransportHandler extends AWSTransportHandler implements Transpor
 
 
 //    if(replicationTransaction.getAction().getType() == ReplicationActionType.ACTIVATE){
-
-    publishToQueue(sqsReplicationConfig,awsReplicationConfig,path
-            ,resourceResolver,replicationTransaction,persist,filename);
-
+    if(leaderProvider
+            .isLeader()) {
+      publishToQueue(sqsReplicationConfig, awsReplicationConfig, path
+              , resourceResolver, replicationTransaction, persist, filename);
+    }
     return ReplicationResult.OK;
   }
 

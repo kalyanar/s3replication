@@ -99,8 +99,7 @@ public class S3TransportHandler extends AWSTransportHandler implements Transport
   @Override
   public boolean canHandle(AgentConfig agentConfig) {
     String uri = agentConfig == null ? null : agentConfig.getTransportURI();
-    return uri != null && (uri.startsWith(TRANSPORT_SCHEME))&&leaderProvider
-            .isLeader();  }
+    return uri != null && (uri.startsWith(TRANSPORT_SCHEME));  }
 
   @Override
   public ReplicationResult deliver(TransportContext transportContext, ReplicationTransaction replicationTransaction) throws ReplicationException {
@@ -114,7 +113,9 @@ public class S3TransportHandler extends AWSTransportHandler implements Transport
     AWSReplicationConfig awsReplicationConfig=contentResource.adaptTo
             (ConfigurationBuilder.class).as(AWSReplicationConfig.class);
     String bucketName=s3ReplicationConfig.bucketName();
-
+    if(!leaderProvider.isLeader()){
+      return ReplicationResult.OK;
+    }
     if(replicationTransaction.getAction().getType() == ReplicationActionType.ACTIVATE){
       ReplicationContent content = replicationTransaction.getContent();
       ZipInputStream in =null;

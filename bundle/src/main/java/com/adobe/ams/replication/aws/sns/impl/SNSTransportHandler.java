@@ -63,8 +63,7 @@ public class SNSTransportHandler extends AWSTransportHandler implements Transpor
   @Override
   public boolean canHandle(AgentConfig agentConfig) {
     String uri = agentConfig == null ? null : agentConfig.getTransportURI();
-    return uri != null && (uri.startsWith(TRANSPORT_SCHEME))&&leaderProvider
-            .isLeader();  }
+    return uri != null && (uri.startsWith(TRANSPORT_SCHEME));  }
 
   @Reference
   private AmazonSNSFactory amazonSNSFactory;
@@ -74,6 +73,9 @@ public class SNSTransportHandler extends AWSTransportHandler implements Transpor
 
   @Override
   public ReplicationResult deliver(TransportContext transportContext, ReplicationTransaction replicationTransaction) throws ReplicationException {
+    if(!leaderProvider.isLeader()){
+      return ReplicationResult.OK;
+    }
     String path=replicationTransaction.getAction().getPath();
     ResourceResolver resourceResolver=getServiceResourceResolver();
 
